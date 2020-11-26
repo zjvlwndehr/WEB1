@@ -5,10 +5,14 @@
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
   <script src=resource/jquery-3.5.1.js></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
   <section class="login-form">
     <h1>SIGN IN</h1>
+    <?php
+       echo $_SERVER['REMOTE_ADDR']
+    ?>
     <form action="signin.html" method="post">
       <div class="int-area">
         <input type="text" name="id" id="id"
@@ -30,6 +34,18 @@
     <div class="caption">
       <a href="signup.html">SIGN UP</a>
     </div>
+    <h3>Visitor IP address<div id="data"></div></h3>
+    <script>
+
+function callback( response ){
+  return document.getElementById("data").innerHTML=response.IPv4;
+}
+      $.ajax({
+        url:"https://geoip-db.com/jsonp/",
+        dataType:"jsonp"
+      })
+    </script>
+
   </section>
   <script>
     let id = $('#id');
